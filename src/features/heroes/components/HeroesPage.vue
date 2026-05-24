@@ -15,6 +15,7 @@ import { computed, onMounted, provide, ref } from 'vue'
 import PageHeader from '@/shared/ui/PageHeader.vue'
 import Button from '@/shared/ui/Button.vue'
 import SkeletonCard from '@/shared/ui/SkeletonCard.vue'
+import ErrorBlock from '@/shared/ui/ErrorBlock.vue'
 import HeroGrid from './HeroGrid.vue'
 import HeroFormDialog from './HeroFormDialog.vue'
 import ConfirmDeleteDialog from './ConfirmDeleteDialog.vue'
@@ -113,12 +114,11 @@ const isErrored = computed(() => store.status === 'error')
       </div>
     </section>
 
-    <section v-else-if="isErrored" class="flex flex-col items-start gap-s3">
-      <p role="alert" class="font-body text-body text-accent-strong m-0">
-        {{ store.error }}
-      </p>
-      <Button variant="ghost" @click="store.load()">{{ messages.actions.retry }}</Button>
-    </section>
+    <ErrorBlock
+      v-else-if="isErrored"
+      :message="store.error ?? messages.errors.generic"
+      @retry="store.load()"
+    />
 
     <section
       v-else-if="isEmpty"

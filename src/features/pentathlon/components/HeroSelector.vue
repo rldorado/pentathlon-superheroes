@@ -30,7 +30,6 @@ const selectedHeroes = computed<[Hero, Hero, Hero] | null>(() => {
 function handleSimulate(): void {
   if (!selectedHeroes.value) return
   pentathlonStore.start(selectedHeroes.value)
-  pentathlonStore.advance()
 }
 </script>
 
