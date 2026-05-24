@@ -1,0 +1,348 @@
+/* =========================================================================
+   Pentathlon Arena — Foundations
+   Colors + Type tokens, semantic typography, base resets.
+   Mobile-first, Spanish-language UI. Import this at the top of any artifact.
+   ========================================================================= */
+
+/* ---------- FONTS ---------- */
+
+@font-face {
+  font-family: "Clash Display";
+  src: url("fonts/ClashDisplay-Extralight.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("fonts/ClashDisplay-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("fonts/ClashDisplay-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("fonts/ClashDisplay-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("fonts/ClashDisplay-Semibold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("fonts/ClashDisplay-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/Geist-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/Geist-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/Geist-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/Geist-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/Geist-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("fonts/JetBrainsMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("fonts/JetBrainsMono-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("fonts/JetBrainsMono-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ---------- TOKENS ---------- */
+
+:root {
+  /* ---- Brand palette ---- */
+  --pa-canvas:        #F6F7F9; /* 60% — light primary background */
+  --pa-canvas-2:      #ECEEF2; /* card lift / divider tint */
+  --pa-ink:           #161A33; /* 30% — deep indigo, text & dark surfaces */
+  --pa-ink-2:         #5A6072; /* secondary text (~60% of ink) */
+  --pa-ink-3:         #8B91A1; /* tertiary text / icons */
+  --pa-hairline:      #E2E5EB; /* 1px borders on light */
+
+  --pa-accent:        #FF4D2E; /* 10% — hero red-orange, key highlights */
+  --pa-accent-ink:    #161A33; /* indigo text on accent — passes AA */
+  --pa-accent-strong: #D9381C; /* darker accent for white-label buttons */
+
+  /* ---- Dark surfaces ---- */
+  --pa-canvas-dark:    #0C1022;
+  --pa-surface-dark:   #161A33;
+  --pa-surface-dark-2: #1F2547;
+  --pa-hairline-dark:  #2A3060;
+  --pa-ink-on-dark:    #F6F7F9;
+  --pa-ink-on-dark-2:  #A8AEC4;
+
+  /* ---- Semantic / result colors (DATA only — podium & ranking) ---- */
+  --pa-gold:        #F2B100;
+  --pa-gold-ink:    #161A33;
+  --pa-silver:      #B9C0CC;
+  --pa-silver-ink:  #161A33;
+  --pa-bronze:      #C77B3B;
+  --pa-bronze-ink:  #FFFFFF;
+
+  /* ---- Type families ---- */
+  --pa-font-display: "Clash Display", "Space Grotesk", system-ui, sans-serif;
+  --pa-font-body:    "Geist", "Inter", system-ui, sans-serif;
+  --pa-font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* ---- Type scale (mobile-first; clamp up at larger viewports) ---- */
+  --pa-fs-display-xl: clamp(48px, 8vw, 96px);
+  --pa-fs-display-l:  clamp(36px, 6vw, 64px);
+  --pa-fs-h1:         clamp(28px, 4.2vw, 40px);
+  --pa-fs-h2:         clamp(22px, 3vw, 28px);
+  --pa-fs-h3:         20px;
+  --pa-fs-h4:         16px;
+  --pa-fs-body:       15px;
+  --pa-fs-body-sm:    13px;
+  --pa-fs-caption:    12px;
+  --pa-fs-eyebrow:    11px;
+  --pa-fs-score:      clamp(40px, 6vw, 72px); /* big mono numerals */
+
+  /* ---- Tracking ---- */
+  --pa-track-display:  -0.02em;
+  --pa-track-headline: -0.01em;
+  --pa-track-body:     0;
+  --pa-track-eyebrow:  0.08em;
+
+  /* ---- Spacing — 8pt scale ---- */
+  --pa-s-1:  4px;
+  --pa-s-2:  8px;
+  --pa-s-3:  16px;
+  --pa-s-4:  24px;
+  --pa-s-5:  32px;
+  --pa-s-6:  48px;
+  --pa-s-7:  64px;
+  --pa-s-8:  96px;
+
+  /* ---- Radii ---- */
+  --pa-radius-sm: 6px;   /* inputs, small buttons */
+  --pa-radius-md: 8px;   /* cards, primary buttons */
+  --pa-radius-pill: 999px;
+  --pa-radius-thumb: 0px; /* 128×128 hero portraits stay square */
+
+  /* ---- Borders & elevation (no soft material shadows) ---- */
+  --pa-border:        1px solid var(--pa-hairline);
+  --pa-border-strong: 1px solid var(--pa-ink);
+  --pa-border-dark:   1px solid var(--pa-hairline-dark);
+  --pa-focus-ring:    0 0 0 2px var(--pa-canvas), 0 0 0 4px var(--pa-accent);
+
+  /* ---- Layout ---- */
+  --pa-max-width: 1200px;
+  --pa-gutter:    24px;
+  --pa-columns:   12;
+
+  /* ---- Motion ---- */
+  --pa-ease:      cubic-bezier(.2, .8, .2, 1);
+  --pa-ease-out:  cubic-bezier(.16, 1, .3, 1);
+  --pa-dur-fast:  120ms;
+  --pa-dur-base:  200ms;
+  --pa-dur-slow:  320ms;
+}
+
+/* ---------- BASE ---------- */
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--pa-font-body);
+  font-size: var(--pa-fs-body);
+  line-height: 1.5;
+  color: var(--pa-ink);
+  background: var(--pa-canvas);
+  letter-spacing: var(--pa-track-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- SEMANTIC TYPE ---------- */
+
+.pa-display-xl,
+.pa-display-l {
+  font-family: var(--pa-font-display);
+  font-weight: 700;
+  letter-spacing: var(--pa-track-display);
+  line-height: 0.95;
+  color: var(--pa-ink);
+  text-wrap: balance;
+}
+.pa-display-xl { font-size: var(--pa-fs-display-xl); }
+.pa-display-l  { font-size: var(--pa-fs-display-l); }
+
+.pa-h1, h1 {
+  font-family: var(--pa-font-display);
+  font-weight: 600;
+  font-size: var(--pa-fs-h1);
+  letter-spacing: var(--pa-track-headline);
+  line-height: 1.05;
+  color: var(--pa-ink);
+  text-wrap: balance;
+}
+.pa-h2, h2 {
+  font-family: var(--pa-font-display);
+  font-weight: 600;
+  font-size: var(--pa-fs-h2);
+  letter-spacing: var(--pa-track-headline);
+  line-height: 1.1;
+  color: var(--pa-ink);
+}
+.pa-h3, h3 {
+  font-family: var(--pa-font-display);
+  font-weight: 500;
+  font-size: var(--pa-fs-h3);
+  letter-spacing: var(--pa-track-headline);
+  line-height: 1.2;
+  color: var(--pa-ink);
+}
+.pa-h4, h4 {
+  font-family: var(--pa-font-body);
+  font-weight: 600;
+  font-size: var(--pa-fs-h4);
+  line-height: 1.3;
+  color: var(--pa-ink);
+}
+
+.pa-body, p {
+  font-family: var(--pa-font-body);
+  font-weight: 400;
+  font-size: var(--pa-fs-body);
+  line-height: 1.55;
+  color: var(--pa-ink);
+  text-wrap: pretty;
+}
+.pa-body-sm {
+  font-family: var(--pa-font-body);
+  font-size: var(--pa-fs-body-sm);
+  line-height: 1.5;
+  color: var(--pa-ink-2);
+}
+.pa-caption {
+  font-family: var(--pa-font-body);
+  font-size: var(--pa-fs-caption);
+  line-height: 1.4;
+  color: var(--pa-ink-2);
+}
+
+.pa-eyebrow {
+  font-family: var(--pa-font-body);
+  font-weight: 600;
+  font-size: var(--pa-fs-eyebrow);
+  letter-spacing: var(--pa-track-eyebrow);
+  text-transform: uppercase;
+  color: var(--pa-ink-2);
+}
+
+/* Mono / numerals — the scoreboard voice */
+.pa-mono,
+code, kbd, samp, pre {
+  font-family: var(--pa-font-mono);
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.pa-score {
+  font-family: var(--pa-font-mono);
+  font-weight: 700;
+  font-size: var(--pa-fs-score);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums lining-nums;
+  color: var(--pa-ink);
+}
+.pa-stat {
+  font-family: var(--pa-font-mono);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* ---------- LINKS, FOCUS, SELECTION ---------- */
+
+a {
+  color: var(--pa-ink);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+a:hover { color: var(--pa-accent-strong); }
+
+:focus-visible {
+  outline: 2px solid var(--pa-accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--pa-accent);
+  color: var(--pa-accent-ink);
+}
+
+/* ---------- THEME: DARK ---------- */
+
+[data-theme="dark"] {
+  background: var(--pa-canvas-dark);
+  color: var(--pa-ink-on-dark);
+}
+[data-theme="dark"] body,
+[data-theme="dark"] .pa-body,
+[data-theme="dark"] p { color: var(--pa-ink-on-dark); }
+[data-theme="dark"] .pa-h1,
+[data-theme="dark"] .pa-h2,
+[data-theme="dark"] .pa-h3,
+[data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3 { color: var(--pa-ink-on-dark); }
+[data-theme="dark"] .pa-body-sm,
+[data-theme="dark"] .pa-caption,
+[data-theme="dark"] .pa-eyebrow { color: var(--pa-ink-on-dark-2); }

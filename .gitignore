@@ -1,0 +1,33 @@
+# Node
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/
+
+# AI
+.claude/
+
+# Env
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+.cursor/
+.cursorrules
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+
+# Temporary
+temp/
+tmp/
+
+# Other
+.omc/
