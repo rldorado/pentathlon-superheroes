@@ -1,5 +1,7 @@
 # Pentatlón de Superhéroes
 
+![Vista previa: héroes inscritos y podio de clasificación final](docs/app-showcase.png)
+
 Vue 3 + TypeScript + Tailwind app for the "Pentatlón de Superhéroes" code challenge. Two surfaces in Spanish: a hero CRUD against a public REST API and a 5-event sequential simulator that produces a Gold / Silver / Bronze podium.
 
 Governance, architecture, and scope live under [`docs/`](docs/):
