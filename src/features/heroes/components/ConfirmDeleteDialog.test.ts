@@ -11,7 +11,9 @@ const hero: Hero = {
   attributes: { agility: 4, strength: 9, weight: 7, endurance: 6, charisma: 5 },
 }
 
-function mountDialog(props: Partial<{ open: boolean; hero: Hero | null; error: string; pending: boolean }> = {}) {
+function mountDialog(
+  props: Partial<{ open: boolean; hero: Hero | null; error: string; pending: boolean }> = {},
+) {
   return mount(ConfirmDeleteDialog, {
     attachTo: document.body,
     props: { open: true, hero, ...props },

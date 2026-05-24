@@ -102,7 +102,7 @@ export const messages = {
       nameRequired: 'El nombre es obligatorio.',
       nameTooShort: 'El nombre debe tener al menos 2 caracteres.',
       nameTooLong: 'El nombre no puede superar los 40 caracteres.',
-      nameInvalidChars: 'Solo se permiten letras, dígitos, espacio y los símbolos . \' -',
+      nameInvalidChars: "Solo se permiten letras, dígitos, espacio y los símbolos . ' -",
       nameTaken: 'Ya existe un héroe con ese nombre.',
       pictureRequired: 'La imagen es obligatoria.',
       pictureBadType: 'Formato no admitido. Usa PNG o JPEG.',
@@ -126,8 +126,7 @@ export const messages = {
 
     selectionInstruction: 'Selecciona 3 héroes',
     simulateCta: 'Simular pentatlón',
-    insufficientHeroes:
-      'Necesitas al menos 3 héroes inscritos para iniciar el pentatlón.',
+    insufficientHeroes: 'Necesitas al menos 3 héroes inscritos para iniciar el pentatlón.',
     goToHeroesCta: 'Inscribir héroes',
     goToHeroesNavCta: 'Ver héroes →',
 

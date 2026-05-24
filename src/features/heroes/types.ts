@@ -41,6 +41,5 @@ export interface HeroInput {
  * those components don't need to import the store directly.
  */
 import type { useHeroesStore } from './store'
-export const heroesStoreKey: InjectionKey<ReturnType<typeof useHeroesStore>> = Symbol(
-  'heroesStoreKey',
-)
+export const heroesStoreKey: InjectionKey<ReturnType<typeof useHeroesStore>> =
+  Symbol('heroesStoreKey')

@@ -22,9 +22,7 @@ export interface ToastApi {
 export function useToast(busOverride?: ToastBus): ToastApi {
   const bus = busOverride ?? inject<ToastBus | null>(toastKey, null)
   if (!bus) {
-    throw new Error(
-      '[useToast] No ToastBus has been provided. Mount <ToastHost /> in App.vue.',
-    )
+    throw new Error('[useToast] No ToastBus has been provided. Mount <ToastHost /> in App.vue.')
   }
   return {
     push: (message, variant) => bus.push(message, variant),

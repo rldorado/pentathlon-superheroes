@@ -17,9 +17,7 @@ const heroesStore = useHeroesStore()
 const event = computed(() => store.currentEvent)
 const isLastEvent = computed(() => store.cursor === 4)
 const ctaLabel = computed(() =>
-  isLastEvent.value
-    ? messages.pentathlon.seeClassificationCta
-    : messages.pentathlon.nextEventCta,
+  isLastEvent.value ? messages.pentathlon.seeClassificationCta : messages.pentathlon.nextEventCta,
 )
 
 const rows = computed(() => {
@@ -50,13 +48,19 @@ function handleAdvance(): void {
     <table class="w-full border-collapse">
       <thead>
         <tr class="border-b border-hairline">
-          <th class="py-s2 pr-s3 text-left font-body font-semibold text-caption text-ink-2 uppercase tracking-wider">
+          <th
+            class="py-s2 pr-s3 text-left font-body font-semibold text-caption text-ink-2 uppercase tracking-wider"
+          >
             {{ messages.pentathlon.tableHero }}
           </th>
-          <th class="py-s2 px-s3 text-right font-body font-semibold text-caption text-ink-2 uppercase tracking-wider">
+          <th
+            class="py-s2 px-s3 text-right font-body font-semibold text-caption text-ink-2 uppercase tracking-wider"
+          >
             {{ messages.pentathlon.tableValue }}
           </th>
-          <th class="py-s2 pl-s3 text-right font-body font-semibold text-caption text-ink-2 uppercase tracking-wider">
+          <th
+            class="py-s2 pl-s3 text-right font-body font-semibold text-caption text-ink-2 uppercase tracking-wider"
+          >
             {{ messages.pentathlon.tablePoints }}
           </th>
         </tr>
@@ -71,11 +75,7 @@ function handleAdvance(): void {
           <td class="py-s3 pr-s3 font-display font-semibold text-body">
             {{ row.name }}
             <div v-if="row.reasons.length" class="flex flex-wrap gap-1 mt-1">
-              <Chip
-                v-for="reason in row.reasons"
-                :key="reason"
-                variant="accent"
-              >{{ reason }}</Chip>
+              <Chip v-for="reason in row.reasons" :key="reason" variant="accent">{{ reason }}</Chip>
             </div>
           </td>
           <td class="py-s3 px-s3 font-mono font-bold text-body tabular-nums text-right">

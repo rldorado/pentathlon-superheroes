@@ -50,9 +50,7 @@ export function simulate(participants: Participants): PentathlonRun {
       return { heroId: self.id, value: out.value, reasons: out.reasons }
     })
 
-    const pointsAlloc = allocatePoints(
-      computed.map((c) => ({ heroId: c.heroId, value: c.value })),
-    )
+    const pointsAlloc = allocatePoints(computed.map((c) => ({ heroId: c.heroId, value: c.value })))
     const pointsById = new Map(pointsAlloc.map((p) => [p.heroId, p.points] as const))
 
     // Build scored participants sorted by value desc (the EventResult

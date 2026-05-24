@@ -14,7 +14,10 @@ import Dialog from './Dialog.vue'
  *   - aria-modal="true", role="dialog", aria-labelledby references heading
  *   - Body scroll lock while open
  */
-function mountDialog(props: Partial<Record<string, unknown>> = {}, slots: Record<string, string> = {}) {
+function mountDialog(
+  props: Partial<Record<string, unknown>> = {},
+  slots: Record<string, string> = {},
+) {
   return mount(Dialog, {
     attachTo: document.body,
     props: {

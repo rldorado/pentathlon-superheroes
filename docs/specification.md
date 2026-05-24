@@ -44,13 +44,13 @@ A pentathlon run is ephemeral: it is created in memory from a selection of 3 her
 
 The 5 events, in order:
 
-| # | Nombre | Fórmula del valor por participante |
-|---|---|---|
-| 1 | Escalar el rascacielos | `(fuerza × 4) − (peso × 2)` |
-| 2 | Contar un chiste | `(carisma²) − Σ(carisma de los rivales)` |
-| 3 | Disparar al villano | `(agilidad + fuerza) + (5 si va último en la clasificación general acumulada hasta ahora, si no 0)` |
-| 4 | Sprint de 200 km | `(agilidad × 4) + (resistencia × 2) + (10 si quedó 1.º en la prueba anterior, si no −1)` |
-| 5 | Rescatar 100 gatitos | `(agilidad × 2) + (5 si ha ganado al menos dos pruebas hasta ahora, si no 0)` |
+| #   | Nombre                 | Fórmula del valor por participante                                                                  |
+| --- | ---------------------- | --------------------------------------------------------------------------------------------------- |
+| 1   | Escalar el rascacielos | `(fuerza × 4) − (peso × 2)`                                                                         |
+| 2   | Contar un chiste       | `(carisma²) − Σ(carisma de los rivales)`                                                            |
+| 3   | Disparar al villano    | `(agilidad + fuerza) + (5 si va último en la clasificación general acumulada hasta ahora, si no 0)` |
+| 4   | Sprint de 200 km       | `(agilidad × 4) + (resistencia × 2) + (10 si quedó 1.º en la prueba anterior, si no −1)`            |
+| 5   | Rescatar 100 gatitos   | `(agilidad × 2) + (5 si ha ganado al menos dos pruebas hasta ahora, si no 0)`                       |
 
 **Puntos por prueba:** dentro de cada prueba, el participante con el valor más alto recibe **5 pts**, el segundo **3 pts**, el tercero **1 pt**.
 **Clasificación final:** suma de puntos a lo largo de las 5 pruebas. Oro / Plata / Bronce por orden descendente.
@@ -64,9 +64,11 @@ Events 3, 4, and 5 depend on prior results. Tie-handling for "último", "1.º en
 ### 4.1 Roster — Gestión de héroes
 
 #### US-1 — Ver el plantel de héroes
+
 **Como** organizador, **quiero** ver todos los héroes inscritos en una cuadrícula, **para** revisar mi plantel antes de simular.
 
 **Acceptance:**
+
 - AC-1.1 — Al entrar a `/heroes`, la app llama al endpoint de listado y muestra una tarjeta por héroe con: imagen (128×128, circular), nombre, los 5 atributos con su valor numérico y una barra de progreso (0–10).
 - AC-1.2 — Encima de la cuadrícula aparece un encabezado: eyebrow "PLANTILLA", título "Héroes inscritos", subtítulo con el conteo dinámico ("N héroes en cuadro · listos para el pentatlón").
 - AC-1.3 — Botón primario "+ Inscribir héroe" arriba a la derecha.
@@ -75,9 +77,11 @@ Events 3, 4, and 5 depend on prior results. Tie-handling for "último", "1.º en
 - AC-1.6 — Si la API falla, se muestra un mensaje de error en español con un botón "Reintentar".
 
 #### US-2 — Inscribir un héroe nuevo
+
 **Como** organizador, **quiero** crear un héroe con nombre, imagen y atributos, **para** sumarlo al plantel.
 
 **Acceptance:**
+
 - AC-2.1 — Formulario accesible vía "+ Inscribir héroe", con campos: `nombre` (texto), `imagen` (file picker, acepta PNG/JPEG), 5 sliders/inputs numéricos `0–10` para los atributos.
 - AC-2.2 — El nombre se valida: requerido, único en el roster (case-insensitive después de `trim`), longitud máxima razonable (a definir en §6).
 - AC-2.3 — La imagen se valida client-side: tipo PNG/JPEG, **dimensiones exactas 128×128 px**, tamaño máximo (a definir en §6). Si no cumple, se muestra error inline en español y el formulario no se envía.
@@ -88,18 +92,22 @@ Events 3, 4, and 5 depend on prior results. Tie-handling for "último", "1.º en
 - AC-2.8 — El formulario es totalmente operable con teclado y cumple los mínimos a11y de la `constitution.md` §5.2.
 
 #### US-3 — Editar un héroe existente
+
 **Como** organizador, **quiero** modificar el nombre, la imagen o los atributos de un héroe, **para** corregir errores o ajustar el plantel.
 
 **Acceptance:**
+
 - AC-3.1 — Botón "Editar" en cada tarjeta abre el mismo formulario que US-2, precargado con los valores actuales.
 - AC-3.2 — La validación de unicidad de nombre excluye al héroe que se está editando.
 - AC-3.3 — La imagen es opcional al editar: si el usuario no carga una nueva, se mantiene la actual.
 - AC-3.4 — Al guardar con éxito, la tarjeta se actualiza in-situ.
 
 #### US-4 — Eliminar un héroe
+
 **Como** organizador, **quiero** eliminar un héroe del plantel, **para** retirarlo del torneo.
 
 **Acceptance:**
+
 - AC-4.1 — Botón "Eliminar" en cada tarjeta abre un diálogo de confirmación en español que nombra al héroe.
 - AC-4.2 — Al confirmar, se llama al endpoint de borrado, se quita la tarjeta de la cuadrícula y se actualiza el conteo del encabezado.
 - AC-4.3 — Si el héroe a eliminar ya estaba seleccionado en una simulación en curso, queda **deseleccionado** (la simulación no se persiste, así que no hay que reabrirla).
@@ -108,27 +116,33 @@ Events 3, 4, and 5 depend on prior results. Tie-handling for "último", "1.º en
 ### 4.2 Simulador
 
 #### US-5 — Seleccionar 3 héroes para competir
+
 **Como** organizador, **quiero** elegir exactamente 3 héroes distintos del plantel, **para** lanzar el pentatlón.
 
 **Acceptance:**
+
 - AC-5.1 — Ruta `/pentatlon` muestra la lista de héroes con selección múltiple.
 - AC-5.2 — El botón "Simular pentatlón" se habilita **solo** cuando hay exactamente 3 héroes seleccionados.
 - AC-5.3 — Intentar seleccionar un 4.º héroe está deshabilitado o muestra un aviso ("Selecciona exactamente 3").
 - AC-5.4 — Si hay menos de 3 héroes en el plantel, la pantalla muestra un estado vacío que invita a "Inscribir héroe" antes de simular.
 
 #### US-6 — Ejecutar el pentatlón
+
 **Como** organizador, **quiero** ver cómo se desarrollan las 5 pruebas con sus puntuaciones, **para** entender por qué cada héroe acabó donde acabó.
 
 **Acceptance:**
+
 - AC-6.1 — Al pulsar "Simular pentatlón" se calcula la simulación completa (las 5 pruebas en orden, con la lógica secuencial de las pruebas 3, 4, 5).
 - AC-6.2 — Por cada prueba se muestra: nombre de la prueba, fórmula aplicada (o descripción legible), valor calculado de cada héroe, y los puntos otorgados (5/3/1).
 - AC-6.3 — Si la prueba aplica un bonus/penalización condicional, el motivo se muestra al usuario ("+5 por ir último en la general", "−1 por no quedar 1.º en la prueba anterior", etc.).
 - AC-6.4 — El cálculo es determinista: misma selección → mismo resultado, sin aleatoriedad oculta (a confirmar en §6 para empates).
 
 #### US-7 — Ver la clasificación final
+
 **Como** organizador, **quiero** ver el podio final con Oro, Plata y Bronce, **para** declarar al ganador.
 
 **Acceptance:**
+
 - AC-7.1 — La pantalla final muestra un podio con los 3 héroes ordenados por puntos descendentes, usando los colores funcionales `gold` / `silver` / `bronze` (`constitution.md` §6.2).
 - AC-7.2 — El encabezado: eyebrow "PENTATLÓN CERRADO", título "Clasificación final", subtítulo con "5 pruebas disputadas · 3 héroes en el podio · {oroPts} / {plataPts} / {broncePts} pts".
 - AC-7.3 — Cada bloque del podio muestra: rango (1.º/2.º/3.º), nombre del héroe, badge "ORO/PLATA/BRONCE · N PTS" y la puntuación grande en JetBrains Mono con `tabular-nums`.

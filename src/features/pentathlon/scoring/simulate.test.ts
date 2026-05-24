@@ -82,7 +82,13 @@ describe('simulate — golden case from the design-reference roster', () => {
 
   it('final classification: b rank 1 (19 pts, 3 wins), c rank 2 (15 pts), a rank 3 (11 pts)', () => {
     const [first, second, third] = run.classification
-    expect(first).toMatchObject({ heroId: 'b', totalPoints: 19, wins: 3, lastEventValue: 21, rank: 1 })
+    expect(first).toMatchObject({
+      heroId: 'b',
+      totalPoints: 19,
+      wins: 3,
+      lastEventValue: 21,
+      rank: 1,
+    })
     expect(second).toMatchObject({ heroId: 'c', totalPoints: 15, rank: 2 })
     expect(third).toMatchObject({ heroId: 'a', totalPoints: 11, rank: 3 })
   })

@@ -18,7 +18,12 @@ const a0: HeroAttributes = { agility: 0, strength: 0, weight: 0, endurance: 0, c
 function hero(id: string, name: string): ScoringHero {
   return { id, name, attributes: a0 }
 }
-function entry(id: string, points: number, wins: number, lastEventValue: number): ClassificationInput {
+function entry(
+  id: string,
+  points: number,
+  wins: number,
+  lastEventValue: number,
+): ClassificationInput {
   return { heroId: id, totalPoints: points, wins, lastEventValue }
 }
 

@@ -38,12 +38,7 @@ const variantClasses = computed<string[]>(() => {
     <button
       type="button"
       :aria-label="messages.a11y.toastDismissLabel"
-      class="
-        -m-s1 inline-flex items-center justify-center
-        w-8 h-8 rounded-md text-ink-3
-        hover:bg-canvas-2 hover:text-ink
-        transition-colors duration-base ease-pa
-      "
+      class="-m-s1 inline-flex items-center justify-center w-8 h-8 rounded-md text-ink-3 hover:bg-canvas-2 hover:text-ink transition-colors duration-base ease-pa"
       @click="emit('dismiss', toast.id)"
     >
       <svg

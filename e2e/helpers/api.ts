@@ -75,7 +75,7 @@ export function loadHeroFixtureBase64(): string {
 }
 
 export function makeAttributes(seed: number): HeroAttributes {
-  const v = (n: number) => ((seed + n) % 11)
+  const v = (n: number) => (seed + n) % 11
   return {
     agility: v(1),
     strength: v(3),

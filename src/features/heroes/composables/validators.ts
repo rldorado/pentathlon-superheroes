@@ -44,7 +44,9 @@ export function validateAttribute(value: unknown): string | null {
   return null
 }
 
-export function validateAttributes(attrs: HeroAttributes): Partial<Record<keyof HeroAttributes, string>> {
+export function validateAttributes(
+  attrs: HeroAttributes,
+): Partial<Record<keyof HeroAttributes, string>> {
   const out: Partial<Record<keyof HeroAttributes, string>> = {}
   for (const key of Object.keys(attrs) as Array<keyof HeroAttributes>) {
     const err = validateAttribute(attrs[key])
@@ -53,7 +55,10 @@ export function validateAttributes(attrs: HeroAttributes): Partial<Record<keyof 
   return out
 }
 
-export function validatePicture(picture: string | undefined, mode: 'create' | 'edit'): string | null {
+export function validatePicture(
+  picture: string | undefined,
+  mode: 'create' | 'edit',
+): string | null {
   if (mode === 'create' && !picture) return messages.heroes.validation.pictureRequired
   return null
 }

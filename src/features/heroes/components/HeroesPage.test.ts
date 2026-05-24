@@ -100,7 +100,10 @@ describe('HeroesPage — errored', () => {
 
 describe('HeroesPage — populated', () => {
   it('renders the HeroGrid with the roster + the count line in the header', async () => {
-    mockApi.listHeroes.mockResolvedValueOnce([makeHero(), makeHero({ id: 'h-2', name: 'La Sombra' })])
+    mockApi.listHeroes.mockResolvedValueOnce([
+      makeHero(),
+      makeHero({ id: 'h-2', name: 'La Sombra' }),
+    ])
     const { wrapper } = mountPage()
     await flushPromises()
     expect(wrapper.text()).toContain('Capitán Fuerza')

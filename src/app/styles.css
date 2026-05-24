@@ -90,7 +90,9 @@ kbd,
 samp,
 pre {
   font-variant-numeric: tabular-nums lining-nums;
-  font-feature-settings: 'tnum' 1, 'lnum' 1;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1;
 }
 
 /* Focus ring per docs/constitution.md §5.2. */

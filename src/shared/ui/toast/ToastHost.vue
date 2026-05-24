@@ -24,17 +24,9 @@ function onDismiss(id: string): void {
 <template>
   <div
     :aria-label="messages.a11y.toastRegionLabel"
-    class="
-      fixed bottom-s4 right-s4 z-40
-      flex flex-col gap-s2 items-end
-      pointer-events-none
-    "
+    class="fixed bottom-s4 right-s4 z-40 flex flex-col gap-s2 items-end pointer-events-none"
   >
-    <div
-      v-for="t in bus.toasts.value"
-      :key="t.id"
-      class="pointer-events-auto"
-    >
+    <div v-for="t in bus.toasts.value" :key="t.id" class="pointer-events-auto">
       <Toast :toast="t" @dismiss="onDismiss" />
     </div>
   </div>

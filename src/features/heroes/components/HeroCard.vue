@@ -33,7 +33,11 @@ const rows = computed<Row[]>(() => [
   { key: 'agility', label: messages.attributes.agility, value: props.hero.attributes.agility },
   { key: 'strength', label: messages.attributes.strength, value: props.hero.attributes.strength },
   { key: 'weight', label: messages.attributes.weight, value: props.hero.attributes.weight },
-  { key: 'endurance', label: messages.attributes.endurance, value: props.hero.attributes.endurance },
+  {
+    key: 'endurance',
+    label: messages.attributes.endurance,
+    value: props.hero.attributes.endurance,
+  },
   { key: 'charisma', label: messages.attributes.charisma, value: props.hero.attributes.charisma },
 ])
 
@@ -44,10 +48,7 @@ const portraitSrc = computed(() => (props.hero.picture ? toDataUrl(props.hero.pi
   <Card :aria-label="hero.name" class="flex flex-col">
     <div class="p-5 flex flex-col gap-4">
       <div
-        class="
-          flex flex-col items-center text-center gap-s3
-          sm:flex-row sm:items-center sm:text-left sm:gap-4
-        "
+        class="flex flex-col items-center text-center gap-s3 sm:flex-row sm:items-center sm:text-left sm:gap-4"
       >
         <div
           class="w-32 h-32 rounded-thumb overflow-hidden bg-canvas-2 border border-hairline shrink-0"
@@ -63,10 +64,7 @@ const portraitSrc = computed(() => (props.hero.picture ? toDataUrl(props.hero.pi
           />
         </div>
         <h2
-          class="
-            font-display font-medium text-h2 tracking-tight text-ink m-0
-            w-full sm:w-auto break-words
-          "
+          class="font-display font-medium text-h2 tracking-tight text-ink m-0 w-full sm:w-auto break-words"
         >
           {{ hero.name }}
         </h2>
@@ -78,7 +76,9 @@ const portraitSrc = computed(() => (props.hero.picture ? toDataUrl(props.hero.pi
           :key="row.key"
           class="grid grid-cols-[78px_1fr_28px] items-center gap-3"
         >
-          <dt class="font-body text-caption font-medium text-ink-2 whitespace-nowrap">{{ row.label }}</dt>
+          <dt class="font-body text-caption font-medium text-ink-2 whitespace-nowrap">
+            {{ row.label }}
+          </dt>
           <dd class="m-0">
             <ProgressBar :value="row.value" :label="row.label" />
           </dd>

@@ -180,10 +180,7 @@ describe('useHeroesStore — getters', () => {
   it('hasName respects exceptId — own name does not count as a collision when editing', () => {
     const store = useHeroesStore()
     store.$patch({
-      heroes: [
-        hero({ id: 'h-1', name: 'Capitán Fuerza' }),
-        hero({ id: 'h-2', name: 'La Sombra' }),
-      ],
+      heroes: [hero({ id: 'h-1', name: 'Capitán Fuerza' }), hero({ id: 'h-2', name: 'La Sombra' })],
     })
     expect(store.hasName('Capitán Fuerza', 'h-1')).toBe(false)
     expect(store.hasName('La Sombra', 'h-1')).toBe(true)

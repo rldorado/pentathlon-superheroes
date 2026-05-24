@@ -24,12 +24,7 @@ describe('HeroGrid', () => {
 
   it('appends a trailing HeroEmptySlot when the last row has unfilled columns (default 3)', () => {
     // 4 heroes in a 3-col grid → second row has 1 hero + 2 empty cells.
-    const heroes = [
-      hero('h-1', 'A'),
-      hero('h-2', 'B'),
-      hero('h-3', 'C'),
-      hero('h-4', 'D'),
-    ]
+    const heroes = [hero('h-1', 'A'), hero('h-2', 'B'), hero('h-3', 'C'), hero('h-4', 'D')]
     const wrapper = mount(HeroGrid, { props: { heroes } })
     expect(wrapper.findComponent(HeroEmptySlot).exists()).toBe(true)
   })

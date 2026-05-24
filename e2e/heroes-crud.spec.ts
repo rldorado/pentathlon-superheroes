@@ -25,7 +25,10 @@ test.describe('Heroes — create flow', () => {
     const heroName = uniqueName('E2E Hero')
 
     await page.goto('/heroes')
-    await page.getByRole('button', { name: /Inscribir héroe/i }).first().click()
+    await page
+      .getByRole('button', { name: /Inscribir héroe/i })
+      .first()
+      .click()
 
     await page.getByLabel(/Nombre/i).fill(heroName)
 
@@ -33,7 +36,10 @@ test.describe('Heroes — create flow', () => {
     await fileInput.setInputFiles(FIXTURE_PATH)
 
     // Submit the form
-    await page.getByRole('button', { name: /Inscribir héroe/i }).last().click()
+    await page
+      .getByRole('button', { name: /Inscribir héroe/i })
+      .last()
+      .click()
 
     // The new hero card should appear with the chosen name
     const newCard = page.getByRole('heading', { name: heroName, exact: true })

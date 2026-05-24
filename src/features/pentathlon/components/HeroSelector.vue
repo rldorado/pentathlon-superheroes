@@ -23,7 +23,9 @@ const hasEnough = computed(() => heroesStore.heroes.length >= 3)
 
 const selectedHeroes = computed<[Hero, Hero, Hero] | null>(() => {
   if (!canStart.value) return null
-  const heroes = pentathlonStore.selectedIds.map((id) => heroesStore.byId(id)).filter(Boolean) as Hero[]
+  const heroes = pentathlonStore.selectedIds
+    .map((id) => heroesStore.byId(id))
+    .filter(Boolean) as Hero[]
   return heroes.length === 3 ? (heroes as [Hero, Hero, Hero]) : null
 })
 
@@ -66,7 +68,9 @@ function handleSimulate(): void {
           @click="toggle(hero.id)"
         >
           <div class="p-3 flex items-center gap-3">
-            <div class="w-12 h-12 rounded-thumb overflow-hidden bg-canvas-2 border border-hairline shrink-0">
+            <div
+              class="w-12 h-12 rounded-thumb overflow-hidden bg-canvas-2 border border-hairline shrink-0"
+            >
               <img
                 v-if="hero.picture"
                 :src="toDataUrl(hero.picture)"
@@ -86,7 +90,15 @@ function handleSimulate(): void {
             class="absolute top-2 right-2 w-5 h-5 rounded-full bg-accent flex items-center justify-center"
             aria-hidden="true"
           >
-            <svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="square">
+            <svg
+              width="10"
+              height="8"
+              viewBox="0 0 10 8"
+              fill="none"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-linecap="square"
+            >
               <polyline points="1,4 4,7 9,1" />
             </svg>
           </span>
@@ -102,11 +114,7 @@ function handleSimulate(): void {
             ({{ selectedCount }}/3)
           </span>
         </p>
-        <Button
-          variant="primary"
-          :disabled="!canStart"
-          @click="handleSimulate"
-        >
+        <Button variant="primary" :disabled="!canStart" @click="handleSimulate">
           {{ messages.pentathlon.simulateCta }}
         </Button>
       </div>

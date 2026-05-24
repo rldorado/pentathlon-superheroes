@@ -23,7 +23,10 @@ afterEach(() => {
   _resetHttpConfigForTests()
 })
 
-function mockFetchOnceJson<T>(body: T, init: ResponseInit = { status: 200 }): ReturnType<typeof vi.fn> {
+function mockFetchOnceJson<T>(
+  body: T,
+  init: ResponseInit = { status: 200 },
+): ReturnType<typeof vi.fn> {
   const mock = vi.fn(async () => new Response(JSON.stringify(body), init))
   vi.stubGlobal('fetch', mock)
   return mock

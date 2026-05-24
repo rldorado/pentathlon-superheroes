@@ -1,12 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import {
-  event1,
-  event2,
-  event3,
-  event4,
-  event5,
-  EVENT_META,
-} from './events'
+import { event1, event2, event3, event4, event5, EVENT_META } from './events'
 import type { EventContext, EventResult, HeroAttributes, ScoringHero } from './types'
 
 /**
@@ -122,7 +115,10 @@ describe('event3 — Disparar al villano: (agility + strength) + (last? +5 : 0)'
 
 describe('event4 — Sprint de 200 km: (agility × 4) + (endurance × 2) + (wonEv3 ? +10 : −1)', () => {
   function buildEv3(top: string, others: Array<{ id: string; value: number }>): EventResult {
-    const all = [{ heroId: top, value: 10 }, ...others.map((o) => ({ heroId: o.id, value: o.value }))]
+    const all = [
+      { heroId: top, value: 10 },
+      ...others.map((o) => ({ heroId: o.id, value: o.value })),
+    ]
     return {
       eventId: 3,
       name: 'Disparar al villano',
@@ -172,7 +168,12 @@ describe('event4 — Sprint de 200 km: (agility × 4) + (endurance × 2) + (wonE
 })
 
 describe('event5 — Rescatar 100 gatitos: (agility × 2) + (winCount ≥ 2 ? +5 : 0)', () => {
-  function ev(eventId: 1 | 2 | 3 | 4, top: string, second: { id: string; value: number }, third: { id: string; value: number }): EventResult {
+  function ev(
+    eventId: 1 | 2 | 3 | 4,
+    top: string,
+    second: { id: string; value: number },
+    third: { id: string; value: number },
+  ): EventResult {
     return {
       eventId,
       name: `e${eventId}`,

@@ -48,11 +48,7 @@ export async function request<T>(
     if (options.signal) init.signal = options.signal
     response = await fetch(url, init)
   } catch (cause) {
-    throw new ApiError(
-      0,
-      cause instanceof Error ? cause.message : 'Network failure',
-      cause,
-    )
+    throw new ApiError(0, cause instanceof Error ? cause.message : 'Network failure', cause)
   }
 
   const text = await response.text()

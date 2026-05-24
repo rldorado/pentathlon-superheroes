@@ -7,11 +7,56 @@ import type { Hero } from '@/features/heroes/types'
 const mockRun: PentathlonRun = {
   participantIds: ['h1', 'h2', 'h3'],
   events: [
-    { eventId: 1, name: 'E1', formula: 'f1', participants: [{ heroId: 'h1', value: 10, points: 5, reasons: [] }, { heroId: 'h2', value: 8, points: 3, reasons: [] }, { heroId: 'h3', value: 3, points: 1, reasons: [] }] },
-    { eventId: 2, name: 'E2', formula: 'f2', participants: [{ heroId: 'h2', value: 10, points: 5, reasons: [] }, { heroId: 'h1', value: 5, points: 3, reasons: [] }, { heroId: 'h3', value: 2, points: 1, reasons: [] }] },
-    { eventId: 3, name: 'E3', formula: 'f3', participants: [{ heroId: 'h1', value: 7, points: 5, reasons: [] }, { heroId: 'h2', value: 5, points: 3, reasons: [] }, { heroId: 'h3', value: 3, points: 1, reasons: [] }] },
-    { eventId: 4, name: 'E4', formula: 'f4', participants: [{ heroId: 'h1', value: 6, points: 5, reasons: [] }, { heroId: 'h2', value: 4, points: 3, reasons: [] }, { heroId: 'h3', value: 2, points: 1, reasons: [] }] },
-    { eventId: 5, name: 'E5', formula: 'f5', participants: [{ heroId: 'h1', value: 5, points: 5, reasons: [] }, { heroId: 'h2', value: 3, points: 3, reasons: [] }, { heroId: 'h3', value: 1, points: 1, reasons: [] }] },
+    {
+      eventId: 1,
+      name: 'E1',
+      formula: 'f1',
+      participants: [
+        { heroId: 'h1', value: 10, points: 5, reasons: [] },
+        { heroId: 'h2', value: 8, points: 3, reasons: [] },
+        { heroId: 'h3', value: 3, points: 1, reasons: [] },
+      ],
+    },
+    {
+      eventId: 2,
+      name: 'E2',
+      formula: 'f2',
+      participants: [
+        { heroId: 'h2', value: 10, points: 5, reasons: [] },
+        { heroId: 'h1', value: 5, points: 3, reasons: [] },
+        { heroId: 'h3', value: 2, points: 1, reasons: [] },
+      ],
+    },
+    {
+      eventId: 3,
+      name: 'E3',
+      formula: 'f3',
+      participants: [
+        { heroId: 'h1', value: 7, points: 5, reasons: [] },
+        { heroId: 'h2', value: 5, points: 3, reasons: [] },
+        { heroId: 'h3', value: 3, points: 1, reasons: [] },
+      ],
+    },
+    {
+      eventId: 4,
+      name: 'E4',
+      formula: 'f4',
+      participants: [
+        { heroId: 'h1', value: 6, points: 5, reasons: [] },
+        { heroId: 'h2', value: 4, points: 3, reasons: [] },
+        { heroId: 'h3', value: 2, points: 1, reasons: [] },
+      ],
+    },
+    {
+      eventId: 5,
+      name: 'E5',
+      formula: 'f5',
+      participants: [
+        { heroId: 'h1', value: 5, points: 5, reasons: [] },
+        { heroId: 'h2', value: 3, points: 3, reasons: [] },
+        { heroId: 'h3', value: 1, points: 1, reasons: [] },
+      ],
+    },
   ],
   classification: [
     { heroId: 'h1', totalPoints: 23, wins: 3, lastEventValue: 5, rank: 1 },

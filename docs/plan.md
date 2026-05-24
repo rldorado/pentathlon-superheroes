@@ -6,23 +6,23 @@
 
 ## 1. Tech stack (locked)
 
-| Concern | Choice | Rationale |
-|---|---|---|
-| Language | TypeScript (strict) | constitution §1 |
-| Framework | Vue 3 + `<script setup>` + Composition API | constitution §1 |
-| Build | Vite 5 | fast HMR, first-class TS, plays well with Vue 3 |
-| Styling | TailwindCSS 3 | constitution §1, theme tokens §6.1 |
-| State (global) | Pinia 2 | constitution §3 |
-| State (subtree) | provide/inject with typed `InjectionKey<T>` | constitution §3 |
-| Routing | Vue Router 4 | history mode |
-| HTTP | native `fetch` wrapped in `shared/http/client.ts` | constitution §1, no axios |
-| Unit tests | Vitest + `@vue/test-utils` (only when needed for components) | constitution §4 |
-| Composable tests | `renderComposable` helper, exclusively | constitution §4.2 |
-| E2E | Playwright, critical paths only | constitution §4 |
-| Type-check | `vue-tsc --noEmit` in CI | catch SFC type errors |
-| Lint | ESLint (vue, ts) + Prettier | minimal config, no opinionated plugins |
-| Package mgr | pnpm | constitution §1 |
-| Node | ≥ 20 LTS | engines field in package.json |
+| Concern          | Choice                                                       | Rationale                                       |
+| ---------------- | ------------------------------------------------------------ | ----------------------------------------------- |
+| Language         | TypeScript (strict)                                          | constitution §1                                 |
+| Framework        | Vue 3 + `<script setup>` + Composition API                   | constitution §1                                 |
+| Build            | Vite 5                                                       | fast HMR, first-class TS, plays well with Vue 3 |
+| Styling          | TailwindCSS 3                                                | constitution §1, theme tokens §6.1              |
+| State (global)   | Pinia 2                                                      | constitution §3                                 |
+| State (subtree)  | provide/inject with typed `InjectionKey<T>`                  | constitution §3                                 |
+| Routing          | Vue Router 4                                                 | history mode                                    |
+| HTTP             | native `fetch` wrapped in `shared/http/client.ts`            | constitution §1, no axios                       |
+| Unit tests       | Vitest + `@vue/test-utils` (only when needed for components) | constitution §4                                 |
+| Composable tests | `renderComposable` helper, exclusively                       | constitution §4.2                               |
+| E2E              | Playwright, critical paths only                              | constitution §4                                 |
+| Type-check       | `vue-tsc --noEmit` in CI                                     | catch SFC type errors                           |
+| Lint             | ESLint (vue, ts) + Prettier                                  | minimal config, no opinionated plugins          |
+| Package mgr      | pnpm                                                         | constitution §1                                 |
+| Node             | ≥ 20 LTS                                                     | engines field in package.json                   |
 
 ---
 
@@ -144,10 +144,10 @@ Source: OpenAPI 3.0 served inline from `https://codetest-api.applivery.io/refere
 
 ### 3.2 ApiKey provisioning (developer-only, NOT called from the client)
 
-| Method | Path | Body | Response |
-|---|---|---|---|
-| `POST` | `/api-keys/` | `{}` | `{ id: string; createdAt: string; updatedAt: string }` |
-| `GET`  | `/api-keys/{apiKeyId}` | — | same |
+| Method | Path                   | Body | Response                                               |
+| ------ | ---------------------- | ---- | ------------------------------------------------------ |
+| `POST` | `/api-keys/`           | `{}` | `{ id: string; createdAt: string; updatedAt: string }` |
+| `GET`  | `/api-keys/{apiKeyId}` | —    | same                                                   |
 
 The developer runs `POST /api-keys/` once via curl/Postman, copies `id` into `.env.local` as `VITE_PENTATHLON_API_KEY`. The Vue app never calls `/api-keys/*`.
 
@@ -155,13 +155,13 @@ The developer runs `POST /api-keys/` once via curl/Postman, copies `id` into `.e
 
 All endpoints require `Authorization` header.
 
-| Method | Path | Body | Response |
-|---|---|---|---|
-| `GET` | `/pentathlon/heroes/` | — | `Hero[]` |
-| `POST` | `/pentathlon/heroes/` | `HeroInput` (required: `name`, `attributes`; optional per schema: `picture`) | `Hero` |
-| `GET` | `/pentathlon/heroes/{heroId}` | — | `Hero` |
-| `PUT` | `/pentathlon/heroes/{heroId}` | `HeroInput` (full replace) | `Hero` |
-| `DELETE` | `/pentathlon/heroes/{heroId}` | — | `{ done: boolean }` |
+| Method   | Path                          | Body                                                                         | Response            |
+| -------- | ----------------------------- | ---------------------------------------------------------------------------- | ------------------- |
+| `GET`    | `/pentathlon/heroes/`         | —                                                                            | `Hero[]`            |
+| `POST`   | `/pentathlon/heroes/`         | `HeroInput` (required: `name`, `attributes`; optional per schema: `picture`) | `Hero`              |
+| `GET`    | `/pentathlon/heroes/{heroId}` | —                                                                            | `Hero`              |
+| `PUT`    | `/pentathlon/heroes/{heroId}` | `HeroInput` (full replace)                                                   | `Hero`              |
+| `DELETE` | `/pentathlon/heroes/{heroId}` | —                                                                            | `{ done: boolean }` |
 
 **Note the trailing slashes** on collection paths (`/pentathlon/heroes/`, `/api-keys/`). Reproduce them exactly — some routers 404 without.
 
@@ -170,38 +170,38 @@ All endpoints require `Authorization` header.
 ```ts
 // src/features/heroes/types.ts
 export interface HeroAttributes {
-  agility: number   // 0..10 integer
-  strength: number  // 0..10 integer
-  weight: number    // 0..10 integer
+  agility: number // 0..10 integer
+  strength: number // 0..10 integer
+  weight: number // 0..10 integer
   endurance: number // 0..10 integer  (UI label: "Resistencia")
-  charisma: number  // 0..10 integer
+  charisma: number // 0..10 integer
 }
 
 export interface Hero {
   id: string
-  createdAt: string  // ISO 8601
-  updatedAt: string  // ISO 8601
+  createdAt: string // ISO 8601
+  updatedAt: string // ISO 8601
   name: string
-  picture?: string   // base64 (data-URL stripped); server schema marks it optional
+  picture?: string // base64 (data-URL stripped); server schema marks it optional
   attributes: HeroAttributes
 }
 
 export interface HeroInput {
   name: string
-  picture?: string   // optional per server schema; required by our UX (AC-2.3)
+  picture?: string // optional per server schema; required by our UX (AC-2.3)
   attributes: HeroAttributes
 }
 ```
 
 **Important translation map** (API English ↔ UI Spanish):
 
-| API | UI |
-|---|---|
-| `agility` | Agilidad |
-| `strength` | Fuerza |
-| `weight` | Peso |
+| API         | UI          |
+| ----------- | ----------- |
+| `agility`   | Agilidad    |
+| `strength`  | Fuerza      |
+| `weight`    | Peso        |
 | `endurance` | Resistencia |
-| `charisma` | Carisma |
+| `charisma`  | Carisma     |
 
 Translation lives in `shared/i18n/messages.ts`. The API field names are never displayed.
 
@@ -274,11 +274,11 @@ The simulation is **computed eagerly** on `start()` — all 5 events + classific
 
 Used to expose feature-scoped dependencies without prop-drilling:
 
-| Key (in `features/<x>/types.ts`) | Provided by | Consumed by | Type |
-|---|---|---|---|
-| `heroesStoreKey` | `HeroesPage.vue` | `HeroFormDialog`, `HeroCard`, `ConfirmDeleteDialog` | `ReturnType<typeof useHeroesStore>` |
-| `pentathlonRunKey` | `PentathlonPage.vue` | `EventStep`, `ClassificationPodium` | `PentathlonRunContext` (current event, advance fn, run) |
-| `toastKey` | `App.vue` | any component needing `useToast()` | `ToastBus` |
+| Key (in `features/<x>/types.ts`) | Provided by          | Consumed by                                         | Type                                                    |
+| -------------------------------- | -------------------- | --------------------------------------------------- | ------------------------------------------------------- |
+| `heroesStoreKey`                 | `HeroesPage.vue`     | `HeroFormDialog`, `HeroCard`, `ConfirmDeleteDialog` | `ReturnType<typeof useHeroesStore>`                     |
+| `pentathlonRunKey`               | `PentathlonPage.vue` | `EventStep`, `ClassificationPodium`                 | `PentathlonRunContext` (current event, advance fn, run) |
+| `toastKey`                       | `App.vue`            | any component needing `useToast()`                  | `ToastBus`                                              |
 
 All injection keys are typed `InjectionKey<T>` and exported from the owning feature's `types.ts`. No string keys.
 
@@ -286,12 +286,12 @@ All injection keys are typed `InjectionKey<T>` and exported from the owning feat
 
 ## 5. Routing (`src/app/router.ts`)
 
-| Path | Component | Notes |
-|---|---|---|
-| `/` | redirect → `/heroes` | per decision §6.17 |
-| `/heroes` | `HeroesPage` | roster + form dialog |
-| `/pentatlon` | `PentathlonPage` | three internal phases: selection → events → podium (single route, internal state machine) |
-| `/:catchAll(.*)` | `NotFoundPage` | Spanish 404 with link back to `/heroes` |
+| Path             | Component            | Notes                                                                                     |
+| ---------------- | -------------------- | ----------------------------------------------------------------------------------------- |
+| `/`              | redirect → `/heroes` | per decision §6.17                                                                        |
+| `/heroes`        | `HeroesPage`         | roster + form dialog                                                                      |
+| `/pentatlon`     | `PentathlonPage`     | three internal phases: selection → events → podium (single route, internal state machine) |
+| `/:catchAll(.*)` | `NotFoundPage`       | Spanish 404 with link back to `/heroes`                                                   |
 
 Route titles set via `meta.title` and a small `useDocumentTitle` composable.
 
@@ -309,24 +309,24 @@ export type EventId = 1 | 2 | 3 | 4 | 5
 
 export interface ScoredParticipant {
   heroId: string
-  value: number       // raw event value (can be negative)
-  points: number      // 5/3/1 share after average-on-tie
-  reasons: string[]   // human-readable Spanish explanations (e.g. "+5 por ir último")
+  value: number // raw event value (can be negative)
+  points: number // 5/3/1 share after average-on-tie
+  reasons: string[] // human-readable Spanish explanations (e.g. "+5 por ir último")
 }
 
 export interface EventResult {
   eventId: EventId
-  name: string                       // Spanish
-  formula: string                    // human-readable formula
-  participants: ScoredParticipant[]  // ordered by value desc
+  name: string // Spanish
+  formula: string // human-readable formula
+  participants: ScoredParticipant[] // ordered by value desc
 }
 
 export interface ClassificationEntry {
   heroId: string
   totalPoints: number
-  wins: number          // # events where participant was in the tied-top group
+  wins: number // # events where participant was in the tied-top group
   lastEventValue: number
-  rank: 1 | 2 | 3       // after tiebreaker — always distinct
+  rank: 1 | 2 | 3 // after tiebreaker — always distinct
 }
 
 export interface PentathlonRun {
@@ -351,11 +351,13 @@ Each conditional pushes a Spanish `reason` string for transparent UI.
 ### 6.3 Points allocator (`points.ts`) — decision §6.6 (Option B: average-on-tie)
 
 Algorithm:
+
 1. Sort participants by `value` desc.
 2. Group consecutive participants with equal `value`.
 3. For each group occupying positions `[i, …, i+k-1]` (0-indexed in the sorted list), award each member `mean(BASE_POINTS[i..i+k-1])` where `BASE_POINTS = [5, 3, 1]`.
 
 Examples (matching decision §6.6 exactly):
+
 - No ties: 5 / 3 / 1.
 - 1st = 2nd, 3rd lower: `mean(5,3)=4` / `4` / `1`.
 - 1st alone, 2nd = 3rd: `5` / `mean(3,1)=2` / `2`.
@@ -380,6 +382,7 @@ Runs events 1..5 in order, threading the evolving state (per-event values, per-e
 ### 6.6 Final tiebreaker (`tiebreak.ts`) — decision §6.11
 
 Sort all 3 entries by:
+
 1. `totalPoints` desc
 2. `wins` desc
 3. `lastEventValue` desc (value in event 5)
@@ -433,12 +436,12 @@ PentathlonPage
 
 ## 8. Validation rules (consolidated)
 
-| Field | Rule | Decision ref |
-|---|---|---|
-| `name` | required, trimmed, length 2..40, charset = letters Unicode + digits + space + `.'-`, no emojis/control | §6.1, §6.3 |
-| `name` | unique across roster (case-insensitive after `trim`), excludes self when editing | AC-2.2, AC-3.2 |
-| `picture` | required at create; optional at edit (keep existing if absent); PNG/JPEG; ≤ 200 KB; exactly 128×128 | AC-2.3, AC-3.3, §6.2 |
-| attributes | integer in `[0, 10]` each | AC-2.5 |
+| Field      | Rule                                                                                                   | Decision ref         |
+| ---------- | ------------------------------------------------------------------------------------------------------ | -------------------- |
+| `name`     | required, trimmed, length 2..40, charset = letters Unicode + digits + space + `.'-`, no emojis/control | §6.1, §6.3           |
+| `name`     | unique across roster (case-insensitive after `trim`), excludes self when editing                       | AC-2.2, AC-3.2       |
+| `picture`  | required at create; optional at edit (keep existing if absent); PNG/JPEG; ≤ 200 KB; exactly 128×128    | AC-2.3, AC-3.3, §6.2 |
+| attributes | integer in `[0, 10]` each                                                                              | AC-2.5               |
 
 Validation lives in `useHeroForm` (pure functions, easy to unit-test via plain calls).
 
@@ -448,17 +451,17 @@ Validation lives in `useHeroForm` (pure functions, easy to unit-test via plain c
 
 `package.json` scripts:
 
-| Script | Command |
-|---|---|
-| `dev` | `vite` |
-| `build` | `vue-tsc --noEmit && vite build` |
-| `preview` | `vite preview` |
-| `test` | `vitest run` |
-| `test:watch` | `vitest` |
-| `test:e2e` | `playwright test` |
-| `lint` | `eslint . --ext .ts,.vue` |
-| `format` | `prettier --write .` |
-| `typecheck` | `vue-tsc --noEmit` |
+| Script       | Command                          |
+| ------------ | -------------------------------- |
+| `dev`        | `vite`                           |
+| `build`      | `vue-tsc --noEmit && vite build` |
+| `preview`    | `vite preview`                   |
+| `test`       | `vitest run`                     |
+| `test:watch` | `vitest`                         |
+| `test:e2e`   | `playwright test`                |
+| `lint`       | `eslint . --ext .ts,.vue`        |
+| `format`     | `prettier --write .`             |
+| `typecheck`  | `vue-tsc --noEmit`               |
 
 `.env.example`:
 
@@ -484,27 +487,29 @@ VITE_PENTATHLON_API_KEY=
 
 ## 11. Risks & mitigations
 
-| Risk | Mitigation |
-|---|---|
-| **Sequential coupling of events 3/4/5 produces subtle bugs.** | Implement as pure functions with golden tests; orchestrator is a single loop with a clear state object; one targeted test asserts that a bonus in event 3 propagates correctly into event 4. |
-| **Tie semantics are easy to get wrong silently.** | Each tie shape from decisions §6.6–§6.11 is its own named test. The Spanish "reasons" array is rendered in UI — visual confirmation matches numeric. |
-| **OpenAPI spec marks `picture` as optional, our UX requires it.** | Validation in `useHeroForm` enforces it at create; types use `HeroInput.picture?: string` to match the wire format. |
-| **Trailing slashes on collection endpoints.** | `client.ts` preserves the path verbatim; tests hit the exact paths in §3.3. |
-| **API key leakage.** | Single read in `shared/http/config.ts`. Never logged. `.env.local` gitignored. `README` warns. |
-| **Base64 image size in localStorage / memory.** | We do not localStorage-cache hero images. The 200 KB cap keeps payloads manageable. |
-| **Font assets missing locally.** | `public/fonts/` populated as a setup task; build fails loudly if `@font-face` URLs 404 in CI smoke. |
-| **API errors return unknown shapes.** | `ApiError` carries `rawBody`; UI shows mapped Spanish message; details visible in console. |
+| Risk                                                              | Mitigation                                                                                                                                                                                   |
+| ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Sequential coupling of events 3/4/5 produces subtle bugs.**     | Implement as pure functions with golden tests; orchestrator is a single loop with a clear state object; one targeted test asserts that a bonus in event 3 propagates correctly into event 4. |
+| **Tie semantics are easy to get wrong silently.**                 | Each tie shape from decisions §6.6–§6.11 is its own named test. The Spanish "reasons" array is rendered in UI — visual confirmation matches numeric.                                         |
+| **OpenAPI spec marks `picture` as optional, our UX requires it.** | Validation in `useHeroForm` enforces it at create; types use `HeroInput.picture?: string` to match the wire format.                                                                          |
+| **Trailing slashes on collection endpoints.**                     | `client.ts` preserves the path verbatim; tests hit the exact paths in §3.3.                                                                                                                  |
+| **API key leakage.**                                              | Single read in `shared/http/config.ts`. Never logged. `.env.local` gitignored. `README` warns.                                                                                               |
+| **Base64 image size in localStorage / memory.**                   | We do not localStorage-cache hero images. The 200 KB cap keeps payloads manageable.                                                                                                          |
+| **Font assets missing locally.**                                  | `public/fonts/` populated as a setup task; build fails loudly if `@font-face` URLs 404 in CI smoke.                                                                                          |
+| **API errors return unknown shapes.**                             | `ApiError` carries `rawBody`; UI shows mapped Spanish message; details visible in console.                                                                                                   |
 
 ---
 
 ## 12. Dependencies (initial)
 
 Runtime:
+
 - `vue@^3.4`
 - `vue-router@^4`
 - `pinia@^2`
 
 Dev:
+
 - `vite@^5`, `@vitejs/plugin-vue`
 - `typescript@^5`, `vue-tsc`
 - `tailwindcss@^3`, `postcss`, `autoprefixer`

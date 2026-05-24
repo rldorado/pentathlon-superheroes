@@ -38,7 +38,9 @@ const ariaLabel = computed(() =>
         <line x1="4" y1="11" x2="18" y2="11" />
       </svg>
     </div>
-    <p class="font-body text-body-sm text-ink-2 whitespace-pre-line">{{ messages.heroes.empty.slot }}</p>
+    <p class="font-body text-body-sm text-ink-2 whitespace-pre-line">
+      {{ messages.heroes.empty.slot }}
+    </p>
     <button
       type="button"
       class="mt-3 min-h-9 px-1 py-1 font-body font-semibold text-body-sm text-ink underline underline-offset-4 hover:text-accent-strong"

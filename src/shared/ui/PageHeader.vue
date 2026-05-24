@@ -13,11 +13,7 @@ defineProps<{
     <div class="min-w-0 flex flex-col gap-s2">
       <p
         data-eyebrow
-        class="
-          inline-flex items-center gap-s2
-          font-body font-semibold text-eyebrow uppercase text-ink-2
-          before:content-[''] before:block before:h-[2px] before:w-6 before:bg-accent
-        "
+        class="inline-flex items-center gap-s2 font-body font-semibold text-eyebrow uppercase text-ink-2 before:content-[''] before:block before:h-[2px] before:w-6 before:bg-accent"
       >
         {{ eyebrow }}
       </p>
@@ -31,10 +27,7 @@ defineProps<{
     <div
       v-if="$slots.actions"
       data-actions
-      class="
-        flex flex-col gap-s2 w-full
-        sm:flex-row sm:flex-wrap sm:w-auto sm:flex-shrink-0 sm:items-center sm:justify-end
-      "
+      class="flex flex-col gap-s2 w-full sm:flex-row sm:flex-wrap sm:w-auto sm:flex-shrink-0 sm:items-center sm:justify-end"
     >
       <slot name="actions" />
     </div>

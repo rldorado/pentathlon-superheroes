@@ -47,30 +47,19 @@ function onUpdateOpen(value: boolean): void {
 </script>
 
 <template>
-  <Dialog
-    :open="open"
-    :title="messages.heroes.delete.title"
-    @update:open="onUpdateOpen"
-  >
+  <Dialog :open="open" :title="messages.heroes.delete.title" @update:open="onUpdateOpen">
     <p v-if="hero" class="font-body text-body text-ink m-0 mb-s4">
-      {{ messages.heroes.delete.bodyPrefix }} <strong>{{ hero.name }}</strong>{{ messages.heroes.delete.bodySuffix }}
+      {{ messages.heroes.delete.bodyPrefix }} <strong>{{ hero.name }}</strong
+      >{{ messages.heroes.delete.bodySuffix }}
     </p>
-    <p
-      v-if="error"
-      role="alert"
-      class="font-body text-body-sm text-accent-strong mb-s4"
-    >
+    <p v-if="error" role="alert" class="font-body text-body-sm text-accent-strong mb-s4">
       {{ error }}
     </p>
     <div class="flex justify-end gap-s2">
       <Button variant="ghost" :disabled="!!pending" @click="onUpdateOpen(false)">
         {{ messages.actions.cancel }}
       </Button>
-      <Button
-        variant="danger"
-        :disabled="!!pending || !hero"
-        @click="onConfirm"
-      >
+      <Button variant="danger" :disabled="!!pending || !hero" @click="onConfirm">
         {{ messages.heroes.delete.submit }}
       </Button>
     </div>

@@ -121,29 +121,17 @@ onBeforeUnmount(() => {
         aria-modal="true"
         :aria-labelledby="headingId"
         tabindex="-1"
-        class="
-          relative w-full max-w-lg bg-canvas rounded-md border border-hairline
-          shadow-none p-s5 max-h-[90vh] overflow-y-auto
-          focus:outline-none
-        "
+        class="relative w-full max-w-lg bg-canvas rounded-md border border-hairline shadow-none p-s5 max-h-[90vh] overflow-y-auto focus:outline-none"
       >
         <header class="flex items-start justify-between gap-s3 mb-s4">
-          <h2
-            :id="headingId"
-            class="font-display font-semibold text-h2 text-ink m-0"
-          >
+          <h2 :id="headingId" class="font-display font-semibold text-h2 text-ink m-0">
             {{ title }}
           </h2>
           <button
             type="button"
             data-dialog-close
             :aria-label="messages.a11y.dialogCloseLabel"
-            class="
-              inline-flex items-center justify-center
-              w-11 h-11 -m-s2 rounded-md
-              bg-transparent text-ink-2 hover:bg-canvas-2 hover:text-ink
-              transition-colors duration-base ease-pa
-            "
+            class="inline-flex items-center justify-center w-11 h-11 -m-s2 rounded-md bg-transparent text-ink-2 hover:bg-canvas-2 hover:text-ink transition-colors duration-base ease-pa"
             @click="close"
           >
             <svg

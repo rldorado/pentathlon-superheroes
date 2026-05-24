@@ -72,9 +72,9 @@ describe('useHeroForm — edit mode pre-fills draft', () => {
   })
 
   it('throws when edit mode is requested without an initial hero', () => {
-    expect(() =>
-      renderComposable(() => useHeroForm({ mode: 'edit', store: makeStore() })),
-    ).toThrow(/edit mode requires/)
+    expect(() => renderComposable(() => useHeroForm({ mode: 'edit', store: makeStore() }))).toThrow(
+      /edit mode requires/,
+    )
   })
 })
 
@@ -108,8 +108,8 @@ describe('useHeroForm — validate', () => {
 
   it('flags duplicate names via store.hasName, excluding own id in edit mode', () => {
     const store = makeStore({
-      hasName: vi.fn((name: string, except?: string) =>
-        name === 'Capitán Fuerza' && except !== 'h-1',
+      hasName: vi.fn(
+        (name: string, except?: string) => name === 'Capitán Fuerza' && except !== 'h-1',
       ),
     })
     const hero = existingHero()
@@ -190,7 +190,10 @@ describe('useHeroForm — submit (edit)', () => {
     result.draft.name = 'Renombrado'
     const out = await result.submit()
     expect(out.ok).toBe(true)
-    expect(store.update).toHaveBeenCalledWith('h-1', expect.objectContaining({ name: 'Renombrado' }))
+    expect(store.update).toHaveBeenCalledWith(
+      'h-1',
+      expect.objectContaining({ name: 'Renombrado' }),
+    )
     unmount()
   })
 
@@ -202,7 +205,10 @@ describe('useHeroForm — submit (edit)', () => {
     )
     // User does NOT touch the picture field → draft.picture is still hero.picture.
     await result.submit()
-    expect(store.update).toHaveBeenCalledWith('h-1', expect.objectContaining({ picture: hero.picture }))
+    expect(store.update).toHaveBeenCalledWith(
+      'h-1',
+      expect.objectContaining({ picture: hero.picture }),
+    )
     unmount()
   })
 })

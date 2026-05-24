@@ -42,9 +42,11 @@ export function buildClassification(
   const nameOf = (id: string): string => byId.get(id)?.name ?? id
 
   const sorted = [...inputs].sort((a, b) => compareEntries(a, b, nameOf))
-  const ranked = sorted.map((e, idx): ClassificationEntry => ({
-    ...e,
-    rank: (idx + 1) as 1 | 2 | 3,
-  }))
+  const ranked = sorted.map(
+    (e, idx): ClassificationEntry => ({
+      ...e,
+      rank: (idx + 1) as 1 | 2 | 3,
+    }),
+  )
   return [ranked[0]!, ranked[1]!, ranked[2]!] as const
 }

@@ -69,18 +69,18 @@ Without these files the app still runs — it falls back to `system-ui` and `ui-
 
 ## Scripts
 
-| Script | Command | What it does |
-|---|---|---|
-| `pnpm dev` | `vite` | Dev server with HMR on `http://localhost:5173` |
-| `pnpm build` | `vue-tsc --noEmit && vite build` | Type-check then production build to `dist/` |
-| `pnpm preview` | `vite preview` | Serve the production build on `http://localhost:4173` |
-| `pnpm test` | `vitest run` | Unit + composable tests (one shot) |
-| `pnpm test:watch` | `vitest` | Watch mode |
-| `pnpm test:e2e` | `playwright test` | Playwright e2e (boots `pnpm preview` automatically) |
-| `pnpm typecheck` | `vue-tsc --noEmit` | TS strict check (no emit) |
-| `pnpm lint` | `eslint .` | Lint TS + Vue |
-| `pnpm format` | `prettier --write .` | Format codebase |
-| `pnpm format:check` | `prettier --check .` | CI-style format check |
+| Script              | Command                          | What it does                                          |
+| ------------------- | -------------------------------- | ----------------------------------------------------- |
+| `pnpm dev`          | `vite`                           | Dev server with HMR on `http://localhost:5173`        |
+| `pnpm build`        | `vue-tsc --noEmit && vite build` | Type-check then production build to `dist/`           |
+| `pnpm preview`      | `vite preview`                   | Serve the production build on `http://localhost:4173` |
+| `pnpm test`         | `vitest run`                     | Unit + composable tests (one shot)                    |
+| `pnpm test:watch`   | `vitest`                         | Watch mode                                            |
+| `pnpm test:e2e`     | `playwright test`                | Playwright e2e (boots `pnpm preview` automatically)   |
+| `pnpm typecheck`    | `vue-tsc --noEmit`               | TS strict check (no emit)                             |
+| `pnpm lint`         | `eslint .`                       | Lint TS + Vue                                         |
+| `pnpm format`       | `prettier --write .`             | Format codebase                                       |
+| `pnpm format:check` | `prettier --check .`             | CI-style format check                                 |
 
 First-time Playwright run also needs:
 

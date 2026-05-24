@@ -32,7 +32,13 @@ const makeHero = (id: string): Hero => ({
   attributes: { agility: 5, strength: 5, weight: 5, endurance: 5, charisma: 5 },
 })
 
-const router = createRouter({ history: createMemoryHistory(), routes: [{ path: '/', component: { template: '<div />' } }, { path: '/heroes', component: { template: '<div />' } }] })
+const router = createRouter({
+  history: createMemoryHistory(),
+  routes: [
+    { path: '/', component: { template: '<div />' } },
+    { path: '/heroes', component: { template: '<div />' } },
+  ],
+})
 
 function mountSelector() {
   return mount(HeroSelector, {

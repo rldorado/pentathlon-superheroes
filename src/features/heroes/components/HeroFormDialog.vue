@@ -145,10 +145,12 @@ async function onSubmit(event: Event): Promise<void> {
         <HeroImageInput
           v-model="form.draft.picture"
           :error="form.errors.picture ?? ''"
-          @update:error="(e: string) => {
-            if (e) form.errors.picture = e
-            else delete form.errors.picture
-          }"
+          @update:error="
+            (e: string) => {
+              if (e) form.errors.picture = e
+              else delete form.errors.picture
+            }
+          "
         />
       </div>
 
@@ -174,7 +176,11 @@ async function onSubmit(event: Event): Promise<void> {
       </p>
 
       <div class="flex justify-end gap-s2 mt-s2">
-        <Button variant="ghost" :disabled="form.submitting.value" @click="$emit('update:open', false)">
+        <Button
+          variant="ghost"
+          :disabled="form.submitting.value"
+          @click="$emit('update:open', false)"
+        >
           {{ messages.actions.cancel }}
         </Button>
         <Button type="submit" variant="primary" :disabled="form.submitting.value">
