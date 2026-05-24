@@ -44,6 +44,12 @@ export const messages = {
     edit: 'Editar',
     confirm: 'Confirmar',
   },
+
+  a11y: {
+    dialogCloseLabel: 'Cerrar diálogo',
+    toastDismissLabel: 'Descartar aviso',
+    toastRegionLabel: 'Avisos',
+  },
 } as const
 
 export type Messages = typeof messages

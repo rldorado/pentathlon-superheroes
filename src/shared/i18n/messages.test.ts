@@ -1,6 +1,14 @@
 import { describe, it, expect } from 'vitest'
 import { messages } from './messages'
 
+describe('messages.a11y', () => {
+  it('exposes Spanish copy for dialog and toast assistive labels', () => {
+    expect(messages.a11y.dialogCloseLabel).toBe('Cerrar diálogo')
+    expect(messages.a11y.toastDismissLabel).toBe('Descartar aviso')
+    expect(messages.a11y.toastRegionLabel).toBe('Avisos')
+  })
+})
+
 describe('messages', () => {
   it('exposes all required error keys', () => {
     expect(messages.errors.missingApiKey).toMatch(/API key/i)

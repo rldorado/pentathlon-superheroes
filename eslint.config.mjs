@@ -46,6 +46,12 @@ export default [
     languageOptions: {
       globals: { ...globals.node, ...globals.browser },
     },
+    rules: {
+      // Harness/Consumer/etc. components inline in test files are a useful
+      // pattern for symbol-keyed provide/inject scaffolding; this rule is a
+      // production-file concern.
+      'vue/one-component-per-file': 'off',
+    },
   },
   {
     files: ['e2e/**/*.ts'],
