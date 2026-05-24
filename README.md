@@ -4,6 +4,10 @@
 
 Vue 3 + TypeScript + Tailwind app for the "Pentatlón de Superhéroes" code challenge. Two surfaces in Spanish: a hero CRUD against a public REST API and a 5-event sequential simulator that produces a Gold / Silver / Bronze podium.
 
+## Methodology: AI-Spec Driven Development
+
+Built with **AI-Spec Driven Development** — every Markdown artifact under [`docs/`](docs/) was drafted, integrated, and human-validated *before* any implementation code was generated. The AI agent consumed the full spec stack as ground truth; the human resolved ambiguities, arbitrated contradictions between sources, and signed off each phase at verification gates. Tooling, prompting strategy, and the build log live in [`AI_WORKFLOW.md`](AI_WORKFLOW.md).
+
 Governance, architecture, and scope live under [`docs/`](docs/):
 
 - [`docs/constitution.md`](docs/constitution.md) — immutable principles (stack, structure, design system, a11y, security).
