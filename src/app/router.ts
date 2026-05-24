@@ -14,9 +14,8 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/pentatlon',
     name: 'pentatlon',
-    component: () => import('./views/PlaceholderView.vue'),
+    component: () => import('@/features/pentathlon/components/PentathlonPage.vue'),
     meta: { title: 'Simulador del pentatlón' },
-    props: { title: 'Simulador del pentatlón', subtitle: 'Pendiente de implementación' },
   },
   {
     path: '/:pathMatch(.*)*',

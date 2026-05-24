@@ -118,6 +118,33 @@ export const messages = {
     endurance: 'Resistencia',
     charisma: 'Carisma',
   },
+
+  pentathlon: {
+    pageEyebrow: 'Arena',
+    pageTitle: 'Simulador del pentatlón',
+
+    selectionInstruction: 'Selecciona 3 héroes',
+    simulateCta: 'Simular pentatlón',
+    insufficientHeroes:
+      'Necesitas al menos 3 héroes inscritos para iniciar el pentatlón.',
+    goToHeroesCta: 'Inscribir héroes',
+
+    nextEventCta: 'Siguiente prueba →',
+    seeClassificationCta: 'Ver clasificación →',
+    tableHero: 'Héroe',
+    tableValue: 'Valor',
+    tablePoints: 'Pts',
+    pts: 'pts',
+
+    podiumEyebrow: 'Pentatlón cerrado',
+    podiumTitle: 'Clasificación final',
+    simulateAgainCta: 'Simular de nuevo →',
+    ranks: {
+      gold: 'Oro',
+      silver: 'Plata',
+      bronze: 'Bronce',
+    },
+  },
 } as const
 
 export type Messages = typeof messages
