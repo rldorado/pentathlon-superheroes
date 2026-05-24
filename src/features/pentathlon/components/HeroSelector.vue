@@ -46,7 +46,7 @@ function handleSimulate(): void {
 
     <template v-else>
       <div
-        class="grid grid-cols-2 sm:grid-cols-3 gap-s3 pb-24"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-s3 pb-24"
         role="list"
         :aria-label="messages.pentathlon.selectionInstruction"
       >

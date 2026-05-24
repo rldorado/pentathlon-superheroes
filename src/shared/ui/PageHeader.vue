@@ -7,7 +7,9 @@ defineProps<{
 </script>
 
 <template>
-  <header class="flex flex-wrap items-end justify-between gap-s4">
+  <header
+    class="flex flex-col gap-s3 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between sm:gap-s4"
+  >
     <div class="min-w-0 flex flex-col gap-s2">
       <p
         data-eyebrow
@@ -26,7 +28,14 @@ defineProps<{
         {{ subtitle }}
       </p>
     </div>
-    <div v-if="$slots.actions" class="flex-shrink-0">
+    <div
+      v-if="$slots.actions"
+      data-actions
+      class="
+        flex flex-col gap-s2 w-full
+        sm:flex-row sm:flex-wrap sm:w-auto sm:flex-shrink-0 sm:items-center sm:justify-end
+      "
+    >
       <slot name="actions" />
     </div>
   </header>

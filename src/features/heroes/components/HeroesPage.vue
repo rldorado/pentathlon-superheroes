@@ -12,6 +12,7 @@
  * form and delete dialogs do not need to import the store directly.
  */
 import { computed, onMounted, provide, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import PageHeader from '@/shared/ui/PageHeader.vue'
 import Button from '@/shared/ui/Button.vue'
 import SkeletonCard from '@/shared/ui/SkeletonCard.vue'
@@ -28,6 +29,7 @@ import type { HeroFormMode } from '../composables/useHeroForm'
 
 const store = useHeroesStore()
 provide(heroesStoreKey, store)
+const router = useRouter()
 const toast = useToast()
 
 onMounted(() => {
@@ -99,6 +101,9 @@ const isErrored = computed(() => store.status === 'error')
       class="mb-s5"
     >
       <template #actions>
+        <Button variant="ghost" @click="router.push('/pentatlon')">
+          {{ messages.heroes.goToPentathlonCta }}
+        </Button>
         <Button variant="primary" @click="openCreate">
           <span class="font-mono font-bold text-h3 w-4 text-center" aria-hidden="true">+</span>
           {{ messages.heroes.inscribeCta }}

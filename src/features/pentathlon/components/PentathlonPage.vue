@@ -9,10 +9,12 @@
  * ClassificationPodium don't need to import the store directly.
  */
 import { computed, onMounted, provide } from 'vue'
+import { useRouter } from 'vue-router'
 import { useHeroesStore } from '@/features/heroes/store'
 import { usePentathlonStore } from '../store'
 import { pentathlonStoreKey } from '../types'
 import PageHeader from '@/shared/ui/PageHeader.vue'
+import Button from '@/shared/ui/Button.vue'
 import HeroSelector from './HeroSelector.vue'
 import EventStep from './EventStep.vue'
 import ClassificationPodium from './ClassificationPodium.vue'
@@ -20,6 +22,7 @@ import { messages } from '@/shared/i18n/messages'
 
 const heroesStore = useHeroesStore()
 const pentathlonStore = usePentathlonStore()
+const router = useRouter()
 
 provide(pentathlonStoreKey, pentathlonStore)
 
@@ -44,7 +47,13 @@ const phase = computed<Phase>(() => {
         :title="messages.pentathlon.pageTitle"
         :subtitle="messages.pentathlon.selectionInstruction"
         class="mb-s5"
-      />
+      >
+        <template #actions>
+          <Button variant="ghost" @click="router.push('/heroes')">
+            {{ messages.pentathlon.goToHeroesNavCta }}
+          </Button>
+        </template>
+      </PageHeader>
       <HeroSelector />
     </template>
 

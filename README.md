@@ -107,4 +107,4 @@ Full layout in [`docs/plan.md`](docs/plan.md) §2.
 
 ## Status
 
-Round 1 (scaffold) complete. Subsequent rounds are tracked in [`docs/tasks.md`](docs/tasks.md). Real CRUD and simulator views replace the placeholder routes starting Round 5.
+All 8 rounds complete (50/50 tasks). Heroes CRUD and pentathlon simulator are fully operational. See [`AI_WORKFLOW.md`](AI_WORKFLOW.md) for the build log and [`docs/tasks.md`](docs/tasks.md) for the full task list.

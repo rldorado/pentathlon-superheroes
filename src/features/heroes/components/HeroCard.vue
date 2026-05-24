@@ -43,7 +43,12 @@ const portraitSrc = computed(() => (props.hero.picture ? toDataUrl(props.hero.pi
 <template>
   <Card :aria-label="hero.name" class="flex flex-col">
     <div class="p-5 flex flex-col gap-4">
-      <div class="flex items-center gap-4">
+      <div
+        class="
+          flex flex-col items-center text-center gap-s3
+          sm:flex-row sm:items-center sm:text-left sm:gap-4
+        "
+      >
         <div
           class="w-32 h-32 rounded-thumb overflow-hidden bg-canvas-2 border border-hairline shrink-0"
           aria-hidden="true"
@@ -57,7 +62,14 @@ const portraitSrc = computed(() => (props.hero.picture ? toDataUrl(props.hero.pi
             :alt="''"
           />
         </div>
-        <h2 class="font-display font-medium text-h2 tracking-tight text-ink m-0">{{ hero.name }}</h2>
+        <h2
+          class="
+            font-display font-medium text-h2 tracking-tight text-ink m-0
+            w-full sm:w-auto break-words
+          "
+        >
+          {{ hero.name }}
+        </h2>
       </div>
 
       <dl class="flex flex-col gap-s2 m-0">

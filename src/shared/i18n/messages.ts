@@ -58,6 +58,7 @@ export const messages = {
     metaCountPlural: 'héroes en cuadro · listos para el pentatlón',
     metaCountEmpty: 'sin héroes en cuadro · plantilla vacía',
     inscribeCta: 'Inscribir héroe',
+    goToPentathlonCta: 'Ir al Pentatlón →',
 
     empty: {
       rosterEmpty: 'Aún no hay héroes inscritos',
@@ -128,6 +129,7 @@ export const messages = {
     insufficientHeroes:
       'Necesitas al menos 3 héroes inscritos para iniciar el pentatlón.',
     goToHeroesCta: 'Inscribir héroes',
+    goToHeroesNavCta: 'Ver héroes →',
 
     nextEventCta: 'Siguiente prueba →',
     seeClassificationCta: 'Ver clasificación →',

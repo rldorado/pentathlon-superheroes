@@ -24,10 +24,16 @@ interface PodiumSlot {
   name: string
   picture: string | undefined
   medalLabel: string
-  stepClass: string
+  /** Medal background applied to the whole card on mobile (no `sm:` prefix). */
+  cardBgClass: string
+  /** Same medal palette, applied to the inner step on desktop (sm: prefixed). */
+  stepBgClass: string
+  /** Per-tier desktop step min-height — only takes effect at sm+. */
+  stepHeightClass: string
   nameSize: string
   ptsSize: string
-  order: number // CSS grid order
+  /** CSS `order` on desktop only; mobile follows semantic 1·2·3 DOM order. */
+  orderClass: string
 }
 
 const slots = computed<PodiumSlot[]>(() => {
@@ -38,30 +44,36 @@ const slots = computed<PodiumSlot[]>(() => {
       name: heroesStore.byId(byRank(1).heroId)?.name ?? '—',
       picture: heroesStore.byId(byRank(1).heroId)?.picture,
       medalLabel: messages.pentathlon.ranks.gold,
-      stepClass: 'bg-gold text-gold-ink min-h-[240px]',
+      cardBgClass: 'bg-gold text-gold-ink',
+      stepBgClass: 'sm:bg-gold sm:text-gold-ink',
+      stepHeightClass: 'sm:min-h-[240px]',
       nameSize: 'text-[clamp(20px,3.2vw,26px)]',
-      ptsSize: 'text-[clamp(40px,6vw,52px)]',
-      order: 2,
+      ptsSize: 'text-[clamp(36px,6vw,52px)]',
+      orderClass: 'sm:order-2',
     },
     {
       entry: byRank(2),
       name: heroesStore.byId(byRank(2).heroId)?.name ?? '—',
       picture: heroesStore.byId(byRank(2).heroId)?.picture,
       medalLabel: messages.pentathlon.ranks.silver,
-      stepClass: 'bg-silver text-silver-ink min-h-[200px]',
+      cardBgClass: 'bg-silver text-silver-ink',
+      stepBgClass: 'sm:bg-silver sm:text-silver-ink',
+      stepHeightClass: 'sm:min-h-[200px]',
       nameSize: 'text-[clamp(16px,2.4vw,20px)]',
       ptsSize: 'text-[clamp(26px,3.6vw,32px)]',
-      order: 1,
+      orderClass: 'sm:order-1',
     },
     {
       entry: byRank(3),
       name: heroesStore.byId(byRank(3).heroId)?.name ?? '—',
       picture: heroesStore.byId(byRank(3).heroId)?.picture,
       medalLabel: messages.pentathlon.ranks.bronze,
-      stepClass: 'bg-bronze text-bronze-ink min-h-[180px]',
+      cardBgClass: 'bg-bronze text-bronze-ink',
+      stepBgClass: 'sm:bg-bronze sm:text-bronze-ink',
+      stepHeightClass: 'sm:min-h-[180px]',
       nameSize: 'text-[clamp(16px,2.4vw,20px)]',
       ptsSize: 'text-[clamp(26px,3.6vw,32px)]',
-      order: 3,
+      orderClass: 'sm:order-3',
     },
   ]
 })
@@ -84,9 +96,14 @@ const metaLine = computed(() => {
       :subtitle="metaLine"
     />
 
-    <!-- DOM order: 1st · 2nd · 3rd (a11y). Visual order: 2nd · 1st · 3rd (CSS order). -->
+    <!--
+      DOM order: 1st · 2nd · 3rd (a11y + mobile reading order).
+      Desktop visual order: 2nd · 1st · 3rd (CSS `order` via `sm:order-*` classes).
+      Mobile layout: vertical stack of full-width medal cards (avatar inline left).
+      Desktop layout: horizontal 3-col podium with floating avatar above each step.
+    -->
     <div
-      class="grid grid-cols-3 gap-4 items-end"
+      class="flex flex-col gap-s3 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-end"
       role="list"
       :aria-label="messages.pentathlon.podiumTitle"
     >
@@ -94,13 +111,23 @@ const metaLine = computed(() => {
         v-for="slot in slots"
         :key="slot.entry.heroId"
         role="listitem"
-        :style="{ order: slot.order }"
-        class="relative pt-24"
+        :class="[
+          'relative',
+          slot.orderClass,
+          'flex flex-row items-center gap-s3 p-s3 rounded-md',
+          slot.cardBgClass,
+          'sm:bg-transparent sm:text-ink',
+          'sm:flex-col sm:items-stretch sm:gap-0 sm:p-0 sm:pt-24 sm:rounded-none',
+        ]"
       >
-        <!-- Avatar floats above the step -->
+        <!-- Avatar: inline left on mobile, floats above the step on desktop -->
         <div
-          class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 rounded-thumb overflow-hidden bg-canvas-2 border border-hairline z-10"
-          :class="slot.entry.rank === 1 ? 'border-ink' : ''"
+          :class="[
+            'w-20 h-20 sm:w-32 sm:h-32',
+            'rounded-thumb overflow-hidden bg-canvas-2 border border-hairline shrink-0 z-10',
+            'sm:absolute sm:top-0 sm:left-1/2 sm:-translate-x-1/2',
+            slot.entry.rank === 1 ? 'border-ink' : '',
+          ]"
           aria-hidden="true"
         >
           <img
@@ -113,10 +140,10 @@ const metaLine = computed(() => {
           />
         </div>
 
-        <!-- Winner accent flag (5-bar motif) -->
+        <!-- Winner accent flag (5-bar motif) — desktop-only, sits above the floating avatar. -->
         <div
           v-if="slot.entry.rank === 1"
-          class="absolute top-[-24px] left-1/2 -translate-x-1/2 flex items-end gap-[3px] h-4"
+          class="hidden sm:flex absolute top-[-24px] left-1/2 -translate-x-1/2 items-end gap-[3px] h-4"
           aria-hidden="true"
         >
           <i class="block w-1 h-[5px] bg-accent not-italic" />
@@ -126,8 +153,19 @@ const metaLine = computed(() => {
           <i class="block w-1 h-[16px] bg-accent not-italic" />
         </div>
 
+        <!--
+          Step content. On mobile it sits next to the avatar with no background of its
+          own (the outer card carries the medal color). On desktop it becomes the
+          "step" block under the floating avatar, with the medal color + tier height.
+        -->
         <div
-          :class="['rounded-t-md pt-24 pb-5 px-4 flex flex-col items-center gap-2 text-center', slot.stepClass]"
+          :class="[
+            'flex-1 min-w-0 flex flex-col items-start text-left gap-s1',
+            'sm:w-full sm:flex-none sm:items-center sm:text-center sm:gap-2',
+            'sm:rounded-t-md sm:pt-24 sm:pb-5 sm:px-4',
+            slot.stepBgClass,
+            slot.stepHeightClass,
+          ]"
         >
           <!-- Medal pill -->
           <span
@@ -137,13 +175,23 @@ const metaLine = computed(() => {
           </span>
 
           <!-- Hero name -->
-          <p :class="['font-display font-bold leading-tight tracking-tight m-0 text-wrap-balance', slot.nameSize]">
+          <p
+            :class="[
+              'font-display font-bold leading-tight tracking-tight m-0 text-wrap-balance break-words',
+              slot.nameSize,
+            ]"
+          >
             {{ slot.name }}
           </p>
 
           <!-- Points -->
-          <div class="flex items-baseline gap-1.5 mt-auto pt-1">
-            <span :class="['font-mono font-bold tabular-nums leading-none tracking-tight', slot.ptsSize]">
+          <div class="flex items-baseline gap-1.5 sm:mt-auto sm:pt-1">
+            <span
+              :class="[
+                'font-mono font-bold tabular-nums leading-none tracking-tight',
+                slot.ptsSize,
+              ]"
+            >
               {{ slot.entry.totalPoints }}
             </span>
             <span class="font-body font-medium text-sm opacity-75">
