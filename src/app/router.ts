@@ -8,9 +8,8 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/heroes',
     name: 'heroes',
-    component: () => import('./views/PlaceholderView.vue'),
+    component: () => import('@/features/heroes/components/HeroesPage.vue'),
     meta: { title: 'Héroes inscritos' },
-    props: { title: 'Héroes inscritos', subtitle: 'Plantilla — pendiente de implementación' },
   },
   {
     path: '/pentatlon',

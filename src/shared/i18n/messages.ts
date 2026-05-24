@@ -50,6 +50,74 @@ export const messages = {
     toastDismissLabel: 'Descartar aviso',
     toastRegionLabel: 'Avisos',
   },
+
+  heroes: {
+    pageEyebrow: 'Plantilla',
+    pageTitle: 'Héroes inscritos',
+    metaCountSingular: 'héroe en cuadro · listo para el pentatlón',
+    metaCountPlural: 'héroes en cuadro · listos para el pentatlón',
+    metaCountEmpty: 'sin héroes en cuadro · plantilla vacía',
+    inscribeCta: 'Inscribir héroe',
+
+    empty: {
+      rosterEmpty: 'Aún no hay héroes inscritos',
+      slot: 'Aún no hay héroes inscritos\nen este hueco.',
+      slotCta: 'Inscribir héroe',
+    },
+
+    actions: {
+      edit: 'Editar',
+      delete: 'Eliminar',
+    },
+
+    form: {
+      titleCreate: 'Inscribir héroe',
+      titleEdit: 'Editar héroe',
+      submitCreate: 'Inscribir héroe',
+      submitEdit: 'Guardar cambios',
+      nameLabel: 'Nombre',
+      namePlaceholder: 'p. ej. Capitán Fuerza',
+      pictureLabel: 'Imagen',
+      pictureHint: 'PNG o JPEG · 128×128 · máx. 200 KB',
+      pictureCta: 'Seleccionar imagen',
+      pictureChangeCta: 'Cambiar imagen',
+      attributesLegend: 'Atributos (0–10)',
+    },
+
+    delete: {
+      title: 'Eliminar héroe',
+      bodyPrefix: '¿Seguro que quieres eliminar a',
+      bodySuffix: '? Esta acción no se puede deshacer.',
+      submit: 'Eliminar héroe',
+    },
+
+    toasts: {
+      created: 'Héroe inscrito correctamente.',
+      updated: 'Héroe actualizado correctamente.',
+      removed: 'Héroe eliminado.',
+    },
+
+    validation: {
+      nameRequired: 'El nombre es obligatorio.',
+      nameTooShort: 'El nombre debe tener al menos 2 caracteres.',
+      nameTooLong: 'El nombre no puede superar los 40 caracteres.',
+      nameInvalidChars: 'Solo se permiten letras, dígitos, espacio y los símbolos . \' -',
+      nameTaken: 'Ya existe un héroe con ese nombre.',
+      pictureRequired: 'La imagen es obligatoria.',
+      pictureBadType: 'Formato no admitido. Usa PNG o JPEG.',
+      pictureTooHeavy: 'La imagen supera los 200 KB.',
+      pictureBadDims: 'La imagen debe ser exactamente de 128×128 píxeles.',
+      attributeOutOfRange: 'Cada atributo debe ser un entero entre 0 y 10.',
+    },
+  },
+
+  attributes: {
+    agility: 'Agilidad',
+    strength: 'Fuerza',
+    weight: 'Peso',
+    endurance: 'Resistencia',
+    charisma: 'Carisma',
+  },
 } as const
 
 export type Messages = typeof messages
